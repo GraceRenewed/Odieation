@@ -1,10 +1,14 @@
-// import { Button } from 'bootstrap'
+import { Button, Card } from 'react-bootstrap';
 // import Link from 'next/link'
-import React from 'react';
-import { Card } from 'react-bootstrap';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 export default function ProfileCard({ profileObj }) {
+  const [favorite, setFavorite] = useState(false);
+
+  const toggleFavorite = () => {
+    setFavorite(!favorite);
+  };
   return (
     <Card style={{ width: '18rem', margin: '10px' }}>
       <Card.Img variant="top" src={profileObj.picture.medium} alt={profileObj.name.first} style={{ height: '400px' }} />
@@ -13,6 +17,11 @@ export default function ProfileCard({ profileObj }) {
           {profileObj.name.first} {profileObj.name.last}{' '}
         </Card.Title>
         <p>{profileObj.location.country}</p>
+        <Card.Title>
+          <Button style={{ fontSize: '30px' }} onClick={toggleFavorite}>
+            <span>{favorite ? ' 💙' : ' 🤍'}</span>
+          </Button>
+        </Card.Title>
         {/* DYNAMIC LINK TO VIEW THE BOOK DETAILS  */}
         {/* <Link href={`/book/${profileObj.firebaseKey}`} passHref>
           <Button variant="primary" className="m-2">
