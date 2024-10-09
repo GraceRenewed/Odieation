@@ -1,8 +1,10 @@
 'use client';
 
 import NavBar from '../components/NavBar';
+import getProfiles from '../api/profileData';
 
 function Home() {
+  console.warn(getProfiles());
   return (
     <div>
       <NavBar />
