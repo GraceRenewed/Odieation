@@ -5,10 +5,16 @@ import PropTypes from 'prop-types';
 
 export default function ProfileCard({ profileObj }) {
   const [favorite, setFavorite] = useState(false);
+  const [details, setDetails] = useState(false);
 
   const toggleFavorite = () => {
     setFavorite(!favorite);
   };
+
+  const toggleDetails = () => {
+    setDetails(!details);
+  };
+
   return (
     <Card style={{ width: '18rem', margin: '10px' }}>
       <Card.Img variant="top" src={profileObj.picture.medium} alt={profileObj.name.first} style={{ height: '400px' }} />
@@ -22,6 +28,20 @@ export default function ProfileCard({ profileObj }) {
             <span>{favorite ? ' 💙' : ' 🤍'}</span>
           </Button>
         </Card.Title>
+        <Button style={{ fontSize: '30px' }} onClick={toggleDetails}>
+          Details
+        </Button>
+        <span>
+          {details ? (
+            <>
+              <p>{profileObj.email}</p>
+              <p>{profileObj.phone}</p>
+            </>
+          ) : (
+            ''
+          )}
+        </span>
+
         {/* DYNAMIC LINK TO VIEW THE BOOK DETAILS  */}
         {/* <Link href={`/book/${profileObj.firebaseKey}`} passHref>
           <Button variant="primary" className="m-2">
@@ -52,5 +72,7 @@ ProfileCard.propTypes = {
     location: PropTypes.shape({
       country: PropTypes.string,
     }),
+    email: PropTypes.string,
+    phone: PropTypes.string,
   }).isRequired,
 };
