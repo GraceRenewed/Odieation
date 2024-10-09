@@ -13,8 +13,8 @@ const getProfiles = () =>
       .then((response) => response.json())
       .then((data) => {
         if (data) {
-          resolve(Object.values(data));
-          console.log(Object.values(data));
+          resolve(data.results);
+          console.log(data.results);
         } else {
           resolve([]);
         }
